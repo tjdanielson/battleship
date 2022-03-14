@@ -1,6 +1,5 @@
 class Gameboard:
-    def __init__(self, owner):
-        self.owner = owner
+    def __init__(self):
         self.board = []
         self.generate_board()
 
@@ -20,7 +19,5 @@ class Gameboard:
             print(letter)
 
 
-game = Gameboard('tessa')
+game = Gameboard()
 game.display_board()
-
-#  ([0] * 20 for i in range(20))
