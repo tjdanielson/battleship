@@ -12,11 +12,12 @@ class Player:
     def place_fleet(self):
         for i in self.fleet.ships:
             #TODO: handle user input (needs to come in like A4)
-            placement = input(f'Where would you like to place your {i.name}?')
+            placement = input(f'Where would you like to place your {i.name}?').upper()
             placement_list = []
             for letter in placement:
                 placement_list.append(letter)
-            self.gameboard
+            placement_list[0] = ord(placement_list[0]) - 64
+            placement_list[1] = int(placement_list[1])
 
 tessa = Player()
 
