@@ -13,6 +13,7 @@ class Player:
             self.place_ship_on_board(ship, self.get_user_placements(ship))
         for i in self.gameboard.board:
             print(i)
+        print('You have placed your ships, please see above board for ship placement!')
 
     def get_user_placements(self, ship):
         #TODO: handle user input (needs to come in like: A4)
@@ -22,10 +23,12 @@ class Player:
             orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             letter = ord(placement[0]) - 65
             number = int(placement[1:])
+            ship_placement = [letter, number, orientation]
             continue_looping = True
             while continue_looping == True:
                 for count in range(0, ship.size):
                     if self.gameboard.board[number][letter] == '0':
+                        valid_placement = True
                         if orientation == 'N':
                             number -= 1
                         elif orientation == 'S':
@@ -36,10 +39,9 @@ class Player:
                             letter -= 1
                     else:
                         continue_looping = False
-                        break
-                ship_placement = [letter, number, orientation]
+                        valid_placement = False
+                        print(f'Placement conflict! Either you have gone off the board or placed your {ship.name} on top of another ship. Please try placing your {ship.name} somewhere else.')
                 continue_looping = False
-                valid_placement = True
         return ship_placement
 
     
