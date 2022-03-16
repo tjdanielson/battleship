@@ -8,17 +8,19 @@ class Player:
         self.place_fleet()
 
     def place_fleet(self):
-        for i in self.fleet.ships:
+        for ship in self.fleet.ships:
             #TODO: handle user input (needs to come in like: A4)
-            placement = input(f'Where would you like to place your {i.name}?').upper()
-            placement_list = []
-            for letter in placement:
-                placement_list.append(letter)
-            placement_list[0] = ord(placement_list[0]) - 65
-            placement_list[1] = int(placement_list[1])
-            self.gameboard.board[placement_list[1]][placement_list[0]] = i.id
-        for letter in self.gameboard.board:
-            print(letter)
+            placement = input(f'Where would you like to place your {ship.name}? ').upper()
+            orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
+            letter = ord(placement[0]) - 65
+            number = int(placement[1:2])
+            self.gameboard.board[number][letter] = ship.id
+            if orientation == 'N':
+                for count in range(1, ship.size):
+                    number -= 1
+                    self.gameboard.board[number][letter] = ship.id
+        for i in self.gameboard.board:
+            print(i)
             
 
 tessa = Player()
