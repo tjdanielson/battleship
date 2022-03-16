@@ -6,7 +6,7 @@ class Player:
         self.fleet = Fleet()
         self.gameboard = Gameboard()
         self.attackboard = Gameboard()
-        self.place_fleet()
+    
 
     def place_fleet(self):
         for ship in self.fleet.ships:
