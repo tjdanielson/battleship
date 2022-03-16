@@ -16,7 +16,7 @@ class Player:
         print('You have placed your ships, please see above board for ship placement!')
 
     def get_user_placements(self, ship):
-        #TODO: handle user input (needs to come in like: A4)
+        #TODO: handle user input (needs to come in like: A4) -- error handling for if it comes in backwards or totally invalid
         letter = 100
         number = 100
         orientation = ''
