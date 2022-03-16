@@ -17,12 +17,17 @@ class Player:
 
     def get_user_placements(self, ship):
         #TODO: handle user input (needs to come in like: A4)
+        letter = 100
+        number = 100
+        orientation = ''
         valid_placement = False
         while valid_placement == False:
-            placement = input(f'Where would you like to place your {ship.name}? ').upper()
-            orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
-            letter = ord(placement[0]) - 65
-            number = int(placement[1:])
+            while letter > 19 or letter < 0 or number > 20 or number < 0:
+                placement = input(f'Where would you like to place your {ship.name}? ').upper()
+                letter = ord(placement[0]) - 65
+                number = int(placement[1:])
+            while orientation != 'N' and orientation != 'E' and orientation != 'S' and orientation != 'W':
+                orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             ship_placement = [letter, number, orientation]
             continue_looping = True
             while continue_looping == True:
