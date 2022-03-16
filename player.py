@@ -13,7 +13,7 @@ class Player:
             placement = input(f'Where would you like to place your {ship.name}? ').upper()
             orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             letter = ord(placement[0]) - 65
-            number = int(placement[1:2])
+            number = int(placement[1:])
             self.gameboard.board[number][letter] = ship.id
             for count in range(1, ship.size):
                 if orientation == 'N':
