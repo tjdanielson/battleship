@@ -1,4 +1,3 @@
-from turtle import pos
 from fleet import Fleet
 from gameboard import Gameboard
 
@@ -6,6 +5,7 @@ class Player:
     def __init__(self):
         self.fleet = Fleet()
         self.gameboard = Gameboard()
+        self.attackboard = Gameboard()
         self.place_fleet()
 
     def place_fleet(self):
@@ -68,6 +68,20 @@ class Player:
                 self.gameboard.board[number][letter] = ship.id
                 letter -= 1
         return self.gameboard.board
+
+    
+    def attack(self, opponent):
+        while letter > 19 or letter < 0 or number > 20 or number < 0:
+            attack = input(f'Where would you like to attack? ').upper()
+            letter = ord(attack[0]) - 65
+            number = int(attack[1:])
+        if opponent.gameboard.board[letter][number] != '0':
+            print('You have hit a ship!!!')
+            self.attackboard.board[letter][number] = '\U0001F4A3'
+        else:
+            print('A swing and a miss')
+            self.attackboard.board[letter][number] = '\U0001F4A8'
+        
 
 tessa = Player()
 
