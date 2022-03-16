@@ -32,7 +32,7 @@ class Player:
             continue_looping = True
             while continue_looping == True:
                 for count in range(0, ship.size):
-                    if self.gameboard.board[number][letter] == '0':
+                    if self.gameboard.board[number][letter] == '0 ':
                         valid_placement = True
                         if orientation == 'N':
                             number -= 1
@@ -75,7 +75,7 @@ class Player:
             attack = input(f'Where would you like to attack? ').upper()
             letter = ord(attack[0]) - 65
             number = int(attack[1:])
-        if opponent.gameboard.board[letter][number] != '0':
+        if opponent.gameboard.board[letter][number] != '0 ':
             print('You have hit a ship!!!')
             self.attackboard.board[letter][number] = '\U0001F4A3'
         else:
