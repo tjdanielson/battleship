@@ -15,16 +15,40 @@ class Player:
             letter = ord(placement[0]) - 65
             number = int(placement[1:2])
             self.gameboard.board[number][letter] = ship.id
-            if orientation == 'N':
-                for count in range(1, ship.size):
+            for count in range(1, ship.size):
+                if orientation == 'N':
                     number -= 1
-                    self.gameboard.board[number][letter] = ship.id
+                elif orientation == 'S':
+                    number += 1
+                elif orientation == 'E':
+                    letter += 1
+                elif orientation == 'W':
+                    letter -= 1
+                self.gameboard.board[number][letter] = ship.id
         for i in self.gameboard.board:
             print(i)
             
 
 tessa = Player()
 
+
+
+#  if orientation == 'N':
+#                 for count in range(1, ship.size):
+#                     number -= 1
+#                     self.gameboard.board[number][letter] = ship.id
+#             elif orientation == 'S':
+#                 for count in range(1, ship.size):
+#                     number += 1
+#                     self.gameboard.board[number][letter] = ship.id
+#             elif orientation == 'E':
+#                 for count in range(1, ship.size):
+#                     letter += 1
+#                     self.gameboard.board[number][letter] = ship.id
+#             elif orientation == 'W':
+#                 for count in range(1, ship.size):
+#                     letter -= 1
+#                     self.gameboard.board[number][letter] = ship.id
 
             
             
