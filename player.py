@@ -86,6 +86,9 @@ class Player:
                 if ship.id == opponent.gameboard.board[number][letter]:
                     ship.size -= 1
                     print(ship.size)
+                    if ship.size == 0:
+                        print(f'You\'ve sunk my {ship.name}') 
+                    break 
             self.attackboard.board[number][letter] = '\U0001F4A3'
         else:
             print('A swing and a miss')
