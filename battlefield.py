@@ -11,24 +11,39 @@ class Battlefield:
         self.player_one.place_fleet()
         print('Player Two: Place your fleet of ships!')
         self.player_two.place_fleet()
-        #player attacks other player
-        self.player_turn(self.player_one, self.player_two)
-        # game tallies scores/health of ships to see where things stand, if player two is still alive, then:
-        #round summary: print out a summary of
+        #players take turns:
+        player_one_turn = True
+        while self.calculate_health(self.player_one, self.player_two) == True:
+            if player_one_turn == True:
+                print('Player one, it is your turn')
+                self.player_turn(self.player_one, self.player_two)
+                player_one_turn = False
+            else:
+                print('Player one, it is your turn')
+                self.player_turn(self.player_two, self.player_one)
+                player_one_turn = True
         #if either player has all ships sunk, game is over
         #display winner
 
     def player_turn(self, player, opponent):
-        print('Player, it is your turn')
         print('Here is your attack board:')
         for i in player.attackboard.board:
             print(i)
         player.attack(opponent)
         
 
-    def calculate_score(self):
-        #calculates each players score
-        pass
+    def calculate_health(self, player_one, player_two):
+        player_one_health = 0
+        player_two_health = 0
+        for ship in player_one.fleet.ships:
+            player_one_health += ship.size
+        for ship in player_two.fleet.ships:
+            player_two_health += ship.size
+        if player_one_health == 0 or player_two_health == 0:
+            return False
+        else:
+            return True
+
 
 battle = Battlefield()
 battle.run_game()

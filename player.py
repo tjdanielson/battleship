@@ -85,7 +85,6 @@ class Player:
             for ship in opponent.fleet.ships:
                 if ship.id == opponent.gameboard.board[number][letter]:
                     ship.size -= 1
-                    print(ship.size)
                     if ship.size == 0:
                         print(f'You\'ve sunk my {ship.name}') 
                     break 
