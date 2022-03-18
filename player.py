@@ -71,16 +71,18 @@ class Player:
 
     
     def attack(self, opponent):
+        letter = 100
+        number = 100
         while letter > 19 or letter < 0 or number > 20 or number < 0:
             attack = input(f'Where would you like to attack? ').upper()
             letter = ord(attack[0]) - 65
             number = int(attack[1:])
-        if opponent.gameboard.board[letter][number] != '0 ':
-            print('You have hit a ship!!!')
-            self.attackboard.board[letter][number] = '\U0001F4A3'
+        if opponent.gameboard.board[number][letter] != '0 ':
+            print('\U0001F4A3 You have hit a ship!!! \U0001F4A3')
+            self.attackboard.board[number][letter] = '\U0001F4A3'
         else:
             print('A swing and a miss')
-            self.attackboard.board[letter][number] = '\U0001F4A8'
+            self.attackboard.board[number][letter] = '\U0001F4A8'
         
 
 tessa = Player()
