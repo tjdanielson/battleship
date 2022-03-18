@@ -77,8 +77,15 @@ class Player:
             attack = input(f'Where would you like to attack? ').upper()
             letter = ord(attack[0]) - 65
             number = int(attack[1:])
-        if opponent.gameboard.board[number][letter] != '0 ':
+        if opponent.gameboard.board[number][letter] == '\U0001F4A3' or opponent.gameboard.board[number][letter] == '\U0001F4A8':
+            print('You\'ve already attacked here! What a waste of a turn!')
+        elif opponent.gameboard.board[number][letter] != '0 ':
             print('\U0001F4A3 You have hit a ship!!! \U0001F4A3')
+            #decrement length of ship hit by 1
+            for ship in opponent.fleet.ships:
+                if ship.id == opponent.gameboard.board[number][letter]:
+                    ship.size -= 1
+                    print(ship.size)
             self.attackboard.board[number][letter] = '\U0001F4A3'
         else:
             print('A swing and a miss')

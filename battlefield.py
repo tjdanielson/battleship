@@ -20,11 +20,11 @@ class Battlefield:
 
     def player_turn(self, player, opponent):
         print('Player, it is your turn')
-        print('Here is your attack board')
-        #print attack board
-        player.attack(opponent)
+        print('Here is your attack board:')
         for i in player.attackboard.board:
             print(i)
+        player.attack(opponent)
+        
 
     def calculate_score(self):
         #calculates each players score
