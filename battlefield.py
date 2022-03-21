@@ -6,6 +6,7 @@ class Battlefield:
         self.player_two = Player()
     
     def run_game(self):
+        self.display_instructions()
         #both players put ships on board
         print('Player One: Place your fleet of ships!')
         self.player_one.place_fleet()
@@ -35,6 +36,17 @@ class Battlefield:
                     break
         self.display_winner(self.calculate_winner(player_one_health, player_two_health))
 
+    def display_instructions(self):
+        print('Welcome to Two Player Battleship!!!')
+        print('Instructions:')
+        print('1. Players will first take turns placing their ships on their boards')
+        print('2. Once ship placement has been done, players will alternate turns attacking the other players ships')
+        print('3. If you hit a ship - the other player\'s ship will lose health')
+        print('4. When one (or both) players drop to zero health (AKA - all ships have been sunk, the player with remaining ships on the board WINS!')
+        print('READY....SET.....GO!')
+        print('*****************************************************************')
+    
+    
     def player_turn(self, player, opponent):
         print('Here is your attack board:')
         for i in player.attackboard.board:
