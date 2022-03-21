@@ -3,10 +3,15 @@ from gameboard import Gameboard
 
 class Player:
     def __init__(self):
+        self.name = ''
         self.fleet = Fleet()
         self.gameboard = Gameboard()
         self.attackboard = Gameboard()
+        self.set_name()
     
+    def set_name(self):
+        self.name = input('Enter your name... ').upper()
+        print('Player name: ', self.name)
 
     def place_fleet(self):
         for ship in self.fleet.ships:
