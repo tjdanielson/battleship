@@ -19,5 +19,5 @@ class Gameboard:
             print(letter)
 
 
-game = Gameboard()
-game.display_board()
+# game = Gameboard()
+# game.display_board()

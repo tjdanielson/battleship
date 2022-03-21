@@ -19,13 +19,22 @@ class Player:
         #TODO: handle user input (needs to come in like: A4) -- error handling for if it comes in backwards or totally invalid
         valid_placement = False
         while valid_placement == False:
-            placement = input(f'Where would you like to place your {ship.name}? ').upper()
-            letter = ord(placement[0]) - 65
-            number = int(placement[1:])
+            valid_input = False
+            while valid_input == False:
+                placement = input(f'Where would you like to place your {ship.name}? ').upper()
+                letter = ord(placement[0]) - 65
+                try:
+                    number = int(placement[1:])
+                    valid_input = True
+                except ValueError:
+                    print('Oops! That isn\'t a valid placement. Please make sure you are entering a letter between A-T, then a number between 1-20 (IE - A10, R4, etc.')
             while letter > 19 or letter < 0 or number > 20 or number < 0:
                 placement = input(f'Invalid placement. Try again: Where would you like to place your {ship.name}? ').upper()
                 letter = ord(placement[0]) - 65
-                number = int(placement[1:])
+                try:
+                 number = int(placement[1:])
+                except ValueError:
+                    print('Oops! That isn\'t a valid placement. Please make sure you are entering a letter between A-T, then a number between 1-20 (IE - A10, R4, etc.')
             orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             while orientation != 'N' and orientation != 'E' and orientation != 'S' and orientation != 'W':
                 orientation = input(f'Invalid entry - Please enter: N, S, E, or W ').upper()
@@ -33,7 +42,6 @@ class Player:
             continue_looping = True
             while continue_looping == True:
                 for count in range(0, ship.size):
-                    print(self.gameboard.board[number][letter])
                     if self.gameboard.board[number][letter] == '0 ':
                         valid_placement = True
                         if orientation == 'N':
@@ -97,7 +105,7 @@ class Player:
             self.attackboard.board[number][letter] = '\U0001F4A8'
         
 
-tessa = Player()
+#tessa = Player()
 
 
             
