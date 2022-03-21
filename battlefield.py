@@ -13,17 +13,17 @@ class Battlefield:
         self.player_two.place_fleet()
         #players take turns:
         player_one_turn = True
-        while self.calculate_health(self.player_one, self.player_two) == True:
+        outcome = self.calculate_winner(self.player_one, self.player_two)
+        while self.calculate_winner(self.player_one, self.player_two) == False:
             if player_one_turn == True:
                 print('Player one, it is your turn')
                 self.player_turn(self.player_one, self.player_two)
                 player_one_turn = False
             else:
-                print('Player one, it is your turn')
+                print('Player two, it is your turn')
                 self.player_turn(self.player_two, self.player_one)
                 player_one_turn = True
-        #if either player has all ships sunk, game is over
-        #display winner
+        self.display_winner(outcome)
 
     def player_turn(self, player, opponent):
         print('Here is your attack board:')
@@ -32,17 +32,26 @@ class Battlefield:
         player.attack(opponent)
         
 
-    def calculate_health(self, player_one, player_two):
+    def calculate_winner(self, player_one, player_two):
         player_one_health = 0
         player_two_health = 0
         for ship in player_one.fleet.ships:
             player_one_health += ship.size
         for ship in player_two.fleet.ships:
             player_two_health += ship.size
-        if player_one_health == 0 or player_two_health == 0:
+        if player_one_health > 0 and player_two_health > 0:
             return False
         else:
-            return True
+            if player_one_health == 0 and player_two_health == 0:
+                return 'TIE'
+            elif player_one_health == 0:
+                return player_two
+            else:
+                return player_one
+
+    def display_winner(self, outcome):
+        print('THE WINNER IS.....')
+        print(f'{outcome}!!!!!!')
 
 
 battle = Battlefield()
