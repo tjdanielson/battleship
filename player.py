@@ -25,16 +25,14 @@ class Player:
                 letter = ord(placement[0]) - 65
                 try:
                     number = int(placement[1:])
-                    valid_input = True
+                    if letter > 19 or letter < 0 or number > 20 or number < 0:
+                        print('Oops, looks like you\'re trying to place your ship outside of the range of the board. Please try again.')
+                        valid_input = False
+                    else:
+                        valid_input = True
                 except ValueError:
                     print('Oops! That isn\'t a valid placement. Please make sure you are entering a letter between A-T, then a number between 1-20 (IE - A10, R4, etc.')
-            while letter > 19 or letter < 0 or number > 20 or number < 0:
-                placement = input(f'Invalid placement. Try again: Where would you like to place your {ship.name}? ').upper()
-                letter = ord(placement[0]) - 65
-                try:
-                 number = int(placement[1:])
-                except ValueError:
-                    print('Oops! That isn\'t a valid placement. Please make sure you are entering a letter between A-T, then a number between 1-20 (IE - A10, R4, etc.')
+                    valid_input = False
             orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             while orientation != 'N' and orientation != 'E' and orientation != 'S' and orientation != 'W':
                 orientation = input(f'Invalid entry - Please enter: N, S, E, or W ').upper()
