@@ -13,17 +13,27 @@ class Battlefield:
         self.player_two.place_fleet()
         #players take turns:
         player_one_turn = True
-        outcome = self.calculate_winner(self.player_one, self.player_two)
-        while self.calculate_winner(self.player_one, self.player_two) == False:
+        keep_playing = True
+        while keep_playing == True:
             if player_one_turn == True:
                 print('Player one, it is your turn')
                 self.player_turn(self.player_one, self.player_two)
                 player_one_turn = False
+                if self.calculate_health(self.player_two) == 0:
+                    player_two_health = 0
+                    player_one_health = self.calculate_health(self.player_one)
+                    keep_playing = False
+                    break
             else:
                 print('Player two, it is your turn')
                 self.player_turn(self.player_two, self.player_one)
                 player_one_turn = True
-        self.display_winner(outcome)
+                if self.calculate_health(self.player_one) == 0:
+                    player_one_health = 0
+                    player_two_health = self.calculate_health(self.player_two)
+                    keep_playing = False
+                    break
+        self.display_winner(self.calculate_winner(player_one_health, player_two_health))
 
     def player_turn(self, player, opponent):
         print('Here is your attack board:')
@@ -31,24 +41,24 @@ class Battlefield:
             print(i)
         player.attack(opponent)
         
+    def calculate_health(self, player):
+        player_health = 0
+        for ship in player.fleet.ships:
+            player_health += ship.size
+        return player_health
 
-    def calculate_winner(self, player_one, player_two):
-        player_one_health = 0
-        player_two_health = 0
-        for ship in player_one.fleet.ships:
-            player_one_health += ship.size
-        for ship in player_two.fleet.ships:
-            player_two_health += ship.size
+    def calculate_winner(self, player_one_health, player_two_health):
         if player_one_health > 0 and player_two_health > 0:
             return False
         else:
             if player_one_health == 0 and player_two_health == 0:
                 return 'TIE'
             elif player_one_health == 0:
-                return player_two
+                return 'PLAYER TWO'
             else:
-                return player_one
+                return 'PLAYER ONE'
 
+    
     def display_winner(self, outcome):
         print('THE WINNER IS.....')
         print(f'{outcome}!!!!!!')
