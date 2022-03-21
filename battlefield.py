@@ -1,4 +1,5 @@
 from player import Player
+import os
 
 class Battlefield:
     def __init__(self):
@@ -11,15 +12,18 @@ class Battlefield:
         print(f'{self.player_one.name}: Place your fleet of ships!')
         self.pause_program()
         self.player_one.place_fleet()
-        print('**********************************************************')
+        self.pause_program()
+        self.clear_console()
         print(f'{self.player_two.name}: Place your fleet of ships!')
         self.pause_program()
         self.player_two.place_fleet()
-        print('**********************************************************')
+        self.pause_program()
+        self.clear_console()
         #players take turns:
         player_one_turn = True
         keep_playing = True
         while keep_playing == True:
+            self.clear_console()
             if player_one_turn == True:
                 print(f'{self.player_one.name}, it is your turn')
                 self.pause_program()
@@ -55,6 +59,10 @@ class Battlefield:
     def pause_program(self):
         pause = input('Press the <ENTER> key to continue...')
 
+    def clear_console(self):
+        clear = lambda: os.system('cls')
+        clear()
+
     def player_turn(self, player, opponent):
         menu = 'What would you like to do? \nMenu:\n0: View my fleet health\n1: View my attack board\n2: Attack'
         print(menu)
@@ -79,6 +87,7 @@ class Battlefield:
                 continue_turn = False
                 player.attack(opponent)
         print('**********************************************************')
+        self.pause_program()
 
         
     def calculate_health(self, player):
