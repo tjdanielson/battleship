@@ -67,25 +67,26 @@ class Battlefield:
         menu = 'What would you like to do? \nMenu:\n0: View my fleet health\n1: View my attack board\n2: Attack'
         print(menu)
         menu_option = input('What would you like to do? ')
-        while menu_option != '0' and menu_option != '1' and menu_option != '2':
-            menu_option = input('Invalid option, please enter 0, 1, or 2')
         continue_turn = True
         while continue_turn == True:
-            if menu_option == '0':
-                print('Current Fleet Health:')
-                player.fleet.display_fleet_health()
-                print(menu)
-                menu_option = input('What would you like to do? ')
-                print('**********************************************************')
-            elif menu_option == '1':
-                print(f'{player.name}: Here is your attack board:')
-                player.attackboard.display_board()
-                print(menu)
-                menu_option = input('What would you like to do? ')
-                print('**********************************************************')
-            elif menu_option == '2':
-                continue_turn = False
-                player.attack(opponent)
+            if menu_option != '0' and menu_option != '1' and menu_option != '2':
+                menu_option = input('Invalid option, please enter 0, 1, or 2')
+            else:
+                if menu_option == '0':
+                    print('Current Fleet Health:')
+                    player.fleet.display_fleet_health()
+                    print(menu)
+                    menu_option = input('What would you like to do? ')
+                    
+                elif menu_option == '1':
+                    print(f'{player.name}: Here is your attack board:')
+                    player.attackboard.display_board()
+                    print(menu)
+                    menu_option = input('What would you like to do? ')
+                    
+                elif menu_option == '2':
+                    continue_turn = False
+                    player.attack(opponent)
         print('**********************************************************')
         self.pause_program()
 
