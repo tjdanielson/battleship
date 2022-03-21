@@ -8,16 +8,22 @@ class Battlefield:
     
     def run_game(self):
         #both players put ships on board
+        
         print(f'{self.player_one.name}: Place your fleet of ships!')
+        self.pause_program()
         self.player_one.place_fleet()
+        print('**********************************************************')
         print(f'{self.player_two.name}: Place your fleet of ships!')
+        self.pause_program()
         self.player_two.place_fleet()
+        print('**********************************************************')
         #players take turns:
         player_one_turn = True
         keep_playing = True
         while keep_playing == True:
             if player_one_turn == True:
                 print(f'{self.player_one.name}, it is your turn')
+                self.pause_program()
                 self.player_turn(self.player_one, self.player_two)
                 player_one_turn = False
                 if self.calculate_health(self.player_two) == 0:
@@ -27,6 +33,7 @@ class Battlefield:
                     break
             else:
                 print(f'{self.player_two.name} it is your turn')
+                self.pause_program()
                 self.player_turn(self.player_two, self.player_one)
                 player_one_turn = True
                 if self.calculate_health(self.player_one) == 0:
@@ -46,12 +53,15 @@ class Battlefield:
         print('READY....SET.....GO!')
         print('*****************************************************************')
     
-    
+    def pause_program(self):
+        pause = input('Press the <ENTER> key to continue...')
+
     def player_turn(self, player, opponent):
         print(f'{player.name}: Here is your attack board:')
         for i in player.attackboard.board:
             print(i)
         player.attack(opponent)
+        print('**********************************************************')
         
     def calculate_health(self, player):
         player_health = 0
@@ -72,6 +82,7 @@ class Battlefield:
 
     
     def display_winner(self, outcome):
+        print('**********************************************************')
         print('THE WINNER IS.....')
         print(f'{outcome}!!!!!!')
 
