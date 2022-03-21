@@ -59,7 +59,9 @@ class Battlefield:
         pause = input('Press the <ENTER> key to continue...')
 
     def clear_console(self):
-        command = 'cls'
+        command = 'clear'
+        if os.name in ('nt', 'dos'):
+            command = 'cls'
         os.system(command)
 
     def player_turn(self, player, opponent):
