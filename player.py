@@ -90,7 +90,7 @@ class Player:
             attack = input(f'Where would you like to attack? ').upper()
             letter = ord(attack[0]) - 65
             number = int(attack[1:])
-        if opponent.gameboard.board[number][letter] == '\U0001F4A3' or opponent.gameboard.board[number][letter] == '\U0001F4A8':
+        if self.attackboard.board[number][letter] == '\U0001F4A3' or opponent.gameboard.board[number][letter] == '\U0001F4A8':
             print('You\'ve already attacked here! What a waste of a turn!')
         elif opponent.gameboard.board[number][letter] != '0 ':
             print('\U0001F4A3 You have hit a ship!!! \U0001F4A3')
