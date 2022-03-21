@@ -59,8 +59,8 @@ class Battlefield:
         pause = input('Press the <ENTER> key to continue...')
 
     def clear_console(self):
-        clear = lambda: os.system('cls')
-        clear()
+        command = 'cls'
+        os.system(command)
 
     def player_turn(self, player, opponent):
         menu = 'What would you like to do? \nMenu:\n0: View my fleet health\n1: View my attack board\n2: Attack'
