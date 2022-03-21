@@ -17,21 +17,23 @@ class Player:
 
     def get_user_placements(self, ship):
         #TODO: handle user input (needs to come in like: A4) -- error handling for if it comes in backwards or totally invalid
-        letter = 100
-        number = 100
-        orientation = ''
         valid_placement = False
         while valid_placement == False:
+            placement = input(f'Where would you like to place your {ship.name}? ').upper()
+            letter = ord(placement[0]) - 65
+            number = int(placement[1:])
             while letter > 19 or letter < 0 or number > 20 or number < 0:
-                placement = input(f'Where would you like to place your {ship.name}? ').upper()
+                placement = input(f'Invalid placement. Try again: Where would you like to place your {ship.name}? ').upper()
                 letter = ord(placement[0]) - 65
                 number = int(placement[1:])
+            orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
             while orientation != 'N' and orientation != 'E' and orientation != 'S' and orientation != 'W':
-                orientation = input(f'Which way would you like your ship oriented? N, S, E, or W ').upper()
+                orientation = input(f'Invalid entry - Please enter: N, S, E, or W ').upper()
             ship_placement = [letter, number, orientation]
             continue_looping = True
             while continue_looping == True:
                 for count in range(0, ship.size):
+                    print(self.gameboard.board[number][letter])
                     if self.gameboard.board[number][letter] == '0 ':
                         valid_placement = True
                         if orientation == 'N':
@@ -46,6 +48,7 @@ class Player:
                         continue_looping = False
                         valid_placement = False
                         print(f'Placement conflict! Either you have gone off the board or placed your {ship.name} on top of another ship. Please try placing your {ship.name} somewhere else.')
+                        break
                 continue_looping = False
         return ship_placement
 

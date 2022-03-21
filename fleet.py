@@ -6,7 +6,7 @@ class Fleet:
         self.create_fleet()
 
     def create_fleet(self):
-        destroyer = Ship('Destroyer', 1, 'D ')
+        destroyer = Ship('Destroyer', 3, 'D ')
         #submarine = Ship('Submarine', 2, 'S ')
         # battleship1 = Ship('Battleship 1', 4, 'B ')
         # battleship2 = Ship('Battleship 2', 4, 'B ')
