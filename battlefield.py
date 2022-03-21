@@ -57,11 +57,29 @@ class Battlefield:
         pause = input('Press the <ENTER> key to continue...')
 
     def player_turn(self, player, opponent):
-        print(f'{player.name}: Here is your attack board:')
-        for i in player.attackboard.board:
-            print(i)
-        player.attack(opponent)
+        menu = 'What would you like to do? \nMenu:\n0: View my fleet health\n1: View my attack board\n2: Attack'
+        print(menu)
+        menu_option = input('What would you like to do? ')
+        while menu_option != '0' and menu_option != '1' and menu_option != '2':
+            menu_option = input('Invalid option, please enter 0, 1, or 2')
+        continue_turn = True
+        while continue_turn == True:
+            if menu_option == '0':
+                print('Current Fleet Health:')
+                player.fleet.display_fleet_health()
+                print(menu)
+                menu_option = input('What would you like to do? ')
+            elif menu_option == '1':
+                print(f'{player.name}: Here is your attack board:')
+                for i in player.attackboard.board:
+                    print(i)
+                print(menu)
+                menu_option = input('What would you like to do? ')
+            elif menu_option == '2':
+                continue_turn = False
+                player.attack(opponent)
         print('**********************************************************')
+
         
     def calculate_health(self, player):
         player_health = 0

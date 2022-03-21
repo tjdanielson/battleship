@@ -16,4 +16,9 @@ class Fleet:
         #     print(i.name)
         #     print(i.size)
 
+    def display_fleet_health(self):
+        for ship in self.ships:
+                print(f'Ship: {ship.name} Health: {ship.size}')
+        print('**********************************************************')
+
 
