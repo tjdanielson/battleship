@@ -16,7 +16,7 @@ class Fleet:
 
     def display_fleet_health(self):
         for ship in self.ships:
-                print(f'Ship: {ship.name} Health: {ship.size}')
+                print(f'Ship: {ship.name} || Health: {ship.size}')
         print('**********************************************************')
 
 

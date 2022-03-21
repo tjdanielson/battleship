@@ -10,7 +10,7 @@ class Player:
         self.set_name()
     
     def set_name(self):
-        self.name = input('Enter your name... ').upper()
+        self.name = input('Player, enter your name... ').upper()
         print('Player name: ', self.name)
 
     def place_fleet(self):

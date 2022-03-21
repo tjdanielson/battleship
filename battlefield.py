@@ -68,11 +68,13 @@ class Battlefield:
                 player.fleet.display_fleet_health()
                 print(menu)
                 menu_option = input('What would you like to do? ')
+                print('**********************************************************')
             elif menu_option == '1':
                 print(f'{player.name}: Here is your attack board:')
                 player.attackboard.display_board()
                 print(menu)
                 menu_option = input('What would you like to do? ')
+                print('**********************************************************')
             elif menu_option == '2':
                 continue_turn = False
                 player.attack(opponent)
