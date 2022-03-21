@@ -8,7 +8,6 @@ class Battlefield:
     
     def run_game(self):
         #both players put ships on board
-        
         print(f'{self.player_one.name}: Place your fleet of ships!')
         self.pause_program()
         self.player_one.place_fleet()
@@ -71,8 +70,7 @@ class Battlefield:
                 menu_option = input('What would you like to do? ')
             elif menu_option == '1':
                 print(f'{player.name}: Here is your attack board:')
-                for i in player.attackboard.board:
-                    print(i)
+                player.attackboard.board.display_board()
                 print(menu)
                 menu_option = input('What would you like to do? ')
             elif menu_option == '2':
@@ -105,5 +103,3 @@ class Battlefield:
         print(f'{outcome}!!!!!!')
 
 
-battle = Battlefield()
-battle.run_game()

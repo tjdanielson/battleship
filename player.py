@@ -21,7 +21,6 @@ class Player:
         print('You have placed your ships, please see above board for ship placement!')
 
     def get_user_placements(self, ship):
-        #TODO: handle user input (needs to come in like: A4) -- error handling for if it comes in backwards or totally invalid
         valid_placement = False
         while valid_placement == False:
             valid_input = False
@@ -108,7 +107,6 @@ class Player:
             self.attackboard.board[number][letter] = '\U0001F4A8'
         
 
-#tessa = Player()
 
 
             

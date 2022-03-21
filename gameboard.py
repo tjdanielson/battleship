@@ -18,6 +18,3 @@ class Gameboard:
         for letter in self.board:
             print(letter)
 
-
-# game = Gameboard()
-# game.display_board()
